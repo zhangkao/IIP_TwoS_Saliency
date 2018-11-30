@@ -6,7 +6,8 @@
         GTX1080, 8G memory, Intel E5-CPU 48G RAM
 
 The code is re-implementation code for the following paper: 
-Kao Zhang, Zhenzhong Chen, Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network. IEEE Trans. Circuits Syst. Video Techn. 2018.
+Kao Zhang, Zhenzhong Chen, Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network. 
+IEEE Trans. Circuits Syst. Video Techn. 2018.
 [Online] Avaliable: https://ieeexplore.ieee.org/document/8543830
 
 
