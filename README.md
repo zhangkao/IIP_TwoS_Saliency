@@ -8,10 +8,11 @@ IEEE Trans. Circuits Syst. Video Techn. 2018. [Online] Avaliable: https://ieeexp
 
 ## Installation 
 ### Environment:
-* windows10/Ubuntu16.04
-* anaconda5.2.0
-* python3.6
-* cuda9.0 and cudnn7.1.2
+The code was developed using Python 3.6 & Keras 2.2.4 & CUDA 9.0. There may be a problem related to software versions.To fix the problem, you may look at the implementation in "zk_models.py" file and replace the syntax to match the new keras environment. 
+* Windows10/Ubuntu16.04
+* Anaconda 5.2.0
+* Python 3.6
+* CUDA 9.0 and cudnn7.1.2
 
 ### Pre-trained models
 Download the pre-trained models and put the pre-trained model into the "Models" file.
