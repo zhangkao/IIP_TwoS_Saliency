@@ -30,7 +30,9 @@ Currently, the code supports python 3.6
 
 ### Train and Test
 * please change the working directory: "wkdir" to your path in the "zk_config.py" file, like
+
         "wkdir = '/home/zk/zk/TwoS-release'" 
+        
 * More parameters are in the "zk_config.py" file.
 * Run the demo "Test_TwoS_Net.py" and "Train_TwoS_Net.py" to test or train the model.
 
