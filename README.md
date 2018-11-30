@@ -38,11 +38,22 @@ And it is easy to change the output format in our code.
 * You can get the color visualization results based on the "Visualization Tools".
 * You can evaluate the performance based on the "EvalScores Tools".
 
+### Paper & Citation
+
+If you use the TwoS video saliency model, please cite the following paper: 
+```
+@article{Zhang2018Video,
+  author    = {Kao Zhang and Zhenzhong Chen},
+  title     = {Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network},
+  journal={IEEE Trans. Circuits Syst. Video Techn.},
+  year={2018}
+}
+```
 
 ## Contact
-zhangkao@whu.edu.cn
-Insititue of Intelligent Sensing and Computing (IISC),
-School of Remote Sensing and Information Engineering,
-Wuhan University,
-430079, Wuhan, China.
-Email: zhangkao@whu.edu.cn
+zhangkao  <br />
+Insititue of Intelligent Sensing and Computing (IISC),  <br />
+School of Remote Sensing and Information Engineering,  <br />
+Wuhan University,  <br />
+430079, Wuhan, China.  <br />
+Email: zhangkao@whu.edu.cn  <br />
