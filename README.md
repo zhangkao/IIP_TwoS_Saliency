@@ -31,7 +31,7 @@ Currently, the code supports python 3.6
 ### Train and Test
 * please change the working directory: "wkdir" to your path in the "zk_config.py" file, like
 
-        "wkdir = '/home/zk/zk/TwoS-release'" 
+    wkdir = '/home/zk/zk/TwoS-release'
         
 * More parameters are in the "zk_config.py" file.
 * Run the demo "Test_TwoS_Net.py" and "Train_TwoS_Net.py" to test or train the model.
@@ -47,10 +47,10 @@ And it is easy to change the output format in our code.
 If you use the TwoS video saliency model, please cite the following paper: 
 ```
 @article{Zhang2018Video,
-  author    = {Kao Zhang and Zhenzhong Chen},
-  title     = {Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network},
-  journal   = {IEEE Trans. Circuits Syst. Video Techn.},
-  year={2018}
+  author  = {Kao Zhang and Zhenzhong Chen},
+  title   = {Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network},
+  journal = {IEEE Trans. Circuits Syst. Video Techn.},
+  year    = {2018}
 }
 ```
 
