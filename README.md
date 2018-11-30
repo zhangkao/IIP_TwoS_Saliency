@@ -8,8 +8,10 @@ IEEE Trans. Circuits Syst. Video Techn. 2018. [Online] Avaliable: https://ieeexp
 
 
 ## Environment:
-
-    windows10/Ubuntu16.04, anaconda5.2.0, python3.6, cuda9.0, cudnn7.1.2
+* windows10/Ubuntu16.04
+* anaconda5.2.0
+* python3.6
+* cuda9.0 and cudnn7.1.2
 
 ## Installation 
 ### Pre-trained models
@@ -38,14 +40,14 @@ And it is easy to change the output format in our code.
 * You can get the color visualization results based on the "Visualization Tools".
 * You can evaluate the performance based on the "EvalScores Tools".
 
-### Paper & Citation
+## Paper & Citation
 
 If you use the TwoS video saliency model, please cite the following paper: 
 ```
 @article{Zhang2018Video,
   author    = {Kao Zhang and Zhenzhong Chen},
   title     = {Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network},
-  journal={IEEE Trans. Circuits Syst. Video Techn.},
+  journal   = {IEEE Trans. Circuits Syst. Video Techn.},
   year={2018}
 }
 ```
