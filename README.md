@@ -13,8 +13,13 @@ IEEE Trans. Circuits Syst. Video Techn. 2018. [Online] Avaliable: https://ieeexp
 
 ## Installation 
 
-    # get flownet2-pytorch source
+    # get the source
     git clone https://github.com/zhangkao/IIP_TwoS_Saliency.git
+    
+    # download the pre-trained models
+    * [SF-net-model](https://drive.google.com/file/d/1hF8vS6YeHkx3j2pfCeQqqZGwA_PJq_Da/view?usp=sharing)[70MB]
+    * [TwoS-model](https://drive.google.com/file/d/1BFT6b7KgKJC8rA59RmOVAXRM_S7aSfKE/view?usp=sharing)[210MB]
+    and put the pre-trained model into the "Models" file.
     
 ### Python requirements 
 Currently, the code supports python 3.6
