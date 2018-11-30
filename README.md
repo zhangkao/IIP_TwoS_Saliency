@@ -6,14 +6,13 @@ Kao Zhang, Zhenzhong Chen, Video Saliency Prediction Based on Spatial-Temporal T
 IEEE Trans. Circuits Syst. Video Techn. 2018. [Online] Avaliable: https://ieeexplore.ieee.org/document/8543830 <br />
 
 
-
-## Environment:
+## Installation 
+### Environment:
 * windows10/Ubuntu16.04
 * anaconda5.2.0
 * python3.6
 * cuda9.0 and cudnn7.1.2
 
-## Installation 
 ### Pre-trained models
 Download the pre-trained models and put the pre-trained model into the "Models" file.
 * [SF-net-model] ( https://github.com/zhangkao/IIP_TwoS_Saliency)[70MB]
