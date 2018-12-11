@@ -2,7 +2,7 @@
 
 The code is re-implementation code for the following paper: 
 
-Kao Zhang, Zhenzhong Chen, Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network.  <br />
+Kao Zhang, Zhenzhong Chen. Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network.  <br />
 IEEE Trans. Circuits Syst. Video Techn. 2018. [Online] Avaliable: https://ieeexplore.ieee.org/document/8543830 <br />
 
 
@@ -49,14 +49,14 @@ If you use the TwoS video saliency model, please cite the following paper:
 @article{Zhang2018Video,
   author  = {Kao Zhang and Zhenzhong Chen},
   title   = {Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network},
-  journal = {IEEE Trans. Circuits Syst. Video Techn.},
+  journal = {IEEE Transactions on Circuits and Systems for Video Technology },
   year    = {2018}
 }
 ```
 
 ## Contact
 zhangkao  <br />
-Insititue of Intelligent Sensing and Computing (IISC),  <br />
+Laboratory of Intelligent Information Processing (LabIIP)  <br />
 School of Remote Sensing and Information Engineering,  <br />
 Wuhan University,  <br />
 430079, Wuhan, China.  <br />
