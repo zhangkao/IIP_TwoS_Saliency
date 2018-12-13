@@ -16,8 +16,8 @@ The code was developed using Python 3.6 & Keras 2.2.4 & CUDA 9.0. There may be a
 
 ### Pre-trained models
 Download the pre-trained models and put the pre-trained model into the "Models" file.
-* [SF-net-model] ( https://github.com/zhangkao/IIP_TwoS_Saliency)[70MB]
-* [TwoS-model]   ( https://github.com/zhangkao/IIP_TwoS_Saliency)[210MB]
+* [SF-Net-model] [百度网盘](https://pan.baidu.com/s/1IAdy6XL3FqTKyImx1gJpcw) [70MB]
+* [TwoS-model]   [百度网盘(https://pan.baidu.com/s/1MkKxmOPc6itCDpOfyaIKyA) [210MB]
     
     
 ### Python requirements 
