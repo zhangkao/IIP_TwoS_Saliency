@@ -17,7 +17,7 @@ The code was developed using Python 3.6 & Keras 2.2.4 & CUDA 9.0. There may be a
 ### Pre-trained models
 Download the pre-trained models and put the pre-trained model into the "Models" file.
 
-* [TwoS-model]  
+* [TwoS-model]
  [[Baidu Drive](https://pan.baidu.com/s/1MkKxmOPc6itCDpOfyaIKyA)]
  [[Google Drive](https://drive.google.com/open?id=1vXTjW8MjW4308j1HM1Y_MBpUxmcX3I2k)]
 
