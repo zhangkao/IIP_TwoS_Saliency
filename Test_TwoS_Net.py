@@ -19,7 +19,7 @@ if __name__ == '__main__':
     OutDtype = np.uint8
 
     if dataset == 'DIEM20':
-        SaveFrames = 35
+        SaveFrames = 300
 
     method_name = 'zk-TwoS'
     model_path = 'Models/zk-twos-final-model.h5'

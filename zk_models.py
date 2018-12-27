@@ -18,8 +18,8 @@ def salcnn_SF_Net(img_rows=480, img_cols=640, img_channels=3):
 	sal_input = Input(shape=(img_rows, img_cols, img_channels))
 	input_shape = (img_rows, img_cols, img_channels)
 
-	cnn = salcnn_VGG16(include_top=False, weights='imagenet', input_tensor=sal_input, input_shape=input_shape)
-	# cnn = VGG16(include_top=False, weights='imagenet', input_tensor=sal_input, input_shape=input_shape)
+	# cnn = salcnn_VGG16(include_top=False, weights='imagenet', input_tensor=sal_input, input_shape=input_shape)
+	cnn = VGG16(include_top=False, weights='imagenet', input_tensor=sal_input, input_shape=input_shape)
 
 	# C2 = cnn.get_layer(name='block2_pool').output
 	C3 = cnn.get_layer(name='block3_pool').output
