@@ -1,23 +1,10 @@
 from __future__ import print_function
 
-import numpy as np
-import warnings
-
-from keras import backend as K
 from keras import layers
 from keras.models import Model,load_model
-from keras.layers import Flatten, Dense, Input, Conv2D, MaxPooling2D, Dropout, Activation, Conv3D, TimeDistributed, BatchNormalization, UpSampling2D
-from keras.layers import GlobalMaxPooling2D, GlobalAveragePooling2D, Lambda, Concatenate
-from keras.regularizers import l2
-from keras.preprocessing import image
-from keras.utils import layer_utils
-from keras.utils.data_utils import get_file
-from keras.applications.imagenet_utils import decode_predictions
-from keras.applications.imagenet_utils import preprocess_input
-from keras_applications.imagenet_utils import _obtain_input_shape
-from keras.engine.topology import get_source_inputs
-from keras.legacy import interfaces
+from keras.layers import Input, Conv2D, MaxPooling2D,  Activation, Conv3D, TimeDistributed, UpSampling2D
 from keras.initializers import Constant
+from keras.applications.vgg16 import VGG16
 
 from zk_config import *
 from salcnn_vgg16 import *
@@ -32,6 +19,8 @@ def salcnn_SF_Net(img_rows=480, img_cols=640, img_channels=3):
 	input_shape = (img_rows, img_cols, img_channels)
 
 	cnn = salcnn_VGG16(include_top=False, weights='imagenet', input_tensor=sal_input, input_shape=input_shape)
+	# cnn = VGG16(include_top=False, weights='imagenet', input_tensor=sal_input, input_shape=input_shape)
+
 	# C2 = cnn.get_layer(name='block2_pool').output
 	C3 = cnn.get_layer(name='block3_pool').output
 	C4 = cnn.get_layer(name='block4_pool').output

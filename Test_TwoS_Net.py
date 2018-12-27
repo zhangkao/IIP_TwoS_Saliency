@@ -22,10 +22,10 @@ if __name__ == '__main__':
         SaveFrames = 35
 
     method_name = 'zk-TwoS'
-    model_path = wkdir + '/Models/zk-twos-final-model.h5'
+    model_path = 'Models/zk-twos-final-model.h5'
 
-    input_path  = wkdir + '/DataSet/' + dataset + '/Videos/'
-    output_path = wkdir + '/DataSet/' + dataset + '/Results/Saliency/' + method_name + '/'
+    input_path  = dataDir + '/' + dataset + '/Videos/'
+    output_path = dataDir + '/' + dataset + '/Results/Saliency/' + method_name + '/'
     if not os.path.exists(output_path):
         os.makedirs(output_path)
 

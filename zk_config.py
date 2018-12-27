@@ -4,9 +4,7 @@ import math,random,os
 # MODEL PARAMETERS														#
 #########################################################################
 # replace the wkdir to your path
-# wkdir = '/home/zk/zk/TwoS-release'
-wkdir = '/home/zk/zk/IIP_Saliency_Video'
-
+dataDir = 'E:/Code/IIP_Saliency_Video/DataSet'
 #########################################################################
 # Parameters SETTINGS
 #########################################################################
@@ -33,7 +31,7 @@ nb_gaussian = 8
 #########################################################################
 # Images TRAINING SETTINGS
 #########################################################################
-imgs_data_path = wkdir + '/DataSet/salicon'
+imgs_data_path = dataDir + '/salicon'
 # path of training images
 imgs_train_path = imgs_data_path + '/train/images/'
 # path of training maps
@@ -54,7 +52,7 @@ nb_imgs_val = 5000
 #########################################################################
 # Videos TRAINING SETTINGS
 #########################################################################
-videos_data_path = wkdir + '/DataSet/salVideo2'
+videos_data_path = dataDir + '/salVideo2'
 # path of training images
 videos_train_path = videos_data_path + '/train/videos/'
 # path of training maps

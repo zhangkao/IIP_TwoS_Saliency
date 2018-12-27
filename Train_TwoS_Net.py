@@ -17,13 +17,13 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 if __name__ == '__main__':
 
     method_name = 'zk_TwoS'
-    tmdir = wkdir + '/Models/temp_models/' + method_name
+    tmdir = '/Models/temp_models/' + method_name
     tmp_model_path = tmdir + '/' + method_name + '_'
     if not os.path.exists(tmdir):
         os.makedirs(tmdir)
 
-    st_pre_model_path = wkdir + '/Models/zk-st-VGG16-FPN-CGP.h5'
-    twos_pre_model_path = wkdir + '/Models/zk-twos-final-model.h5'
+    st_pre_model_path = '/Models/zk-st-VGG16-FPN-CGP.h5'
+    twos_pre_model_path = '/Models/zk-twos-final-model.h5'
 
     print("Build SalCNN Model: ")
     fu_model = salcnn_TwoS_Net(time_dims=nb_c3dframes, img_cols=shape_c, img_rows=shape_r, img_channels=3, pre_sf_path=st_pre_model_path)
