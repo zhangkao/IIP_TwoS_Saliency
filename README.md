@@ -22,8 +22,8 @@ Download the pre-trained models and put the pre-trained model into the "Models" 
  [[Google Drive](https://drive.google.com/open?id=1vXTjW8MjW4308j1HM1Y_MBpUxmcX3I2k)]
 
 * [SF-Net-model]
-[[Baidu Drive](https://pan.baidu.com/s/1IAdy6XL3FqTKyImx1gJpcw)]
-[[Google Drive](https://drive.google.com/open?id=1qg5nYt-KKGHF0_dOjQzw3JgjuHPUq_Wd)]
+[[Baidu Drive](https://pan.baidu.com/s/1yT7LUfDzC1aT_L3-4-ivdw)]
+[[Google Drive](https://drive.google.com/open?id=1nmzdxsSbePF9aOkl9GDUMO7Ndz5NTVT7)]
     
     
 ### Python requirements 
@@ -35,12 +35,26 @@ Currently, the code supports python 3.6
 * hdf5storage 
 
 ### Train and Test
+
 * please change the working directory: "wkdir" to your path in the "zk_config.py" file, like
 
-        wkdir = '/home/zk/zk/TwoS-release'
+        dataDir = 'E:/Code/IIP_TwoS_Saliency/DataSet'
         
 * More parameters are in the "zk_config.py" file.
 * Run the demo "Test_TwoS_Net.py" and "Train_TwoS_Net.py" to test or train the model.
+
+The full training process:
+
+Our model is trained on SALICON and part of the DIEM dataset. We train the SF-Net 
+in spatial stream based on the pre-trained VGG-16 model and the training set of SALICON dataset.
+Then, we train the whole network on the training set of DIEM dataset, and fix the parameters 
+of the trained SF-Net.
+
+* Please download SALICON and DIEM dataset.
+* Run the demo "Train_Test_ST_Net.py" to get pre-trained SF-Net model.
+* Run the demo "Train_TwoS_Net.py" to train the whole model.
+
+
 
 ### Output format
 And it is easy to change the output format in our code.
@@ -61,9 +75,13 @@ If you use the TwoS video saliency model, please cite the following paper:
 ```
 
 ## Contact
-zhangkao  <br />
+Kao ZHANG  <br />
 Laboratory of Intelligent Information Processing (LabIIP)  <br />
-School of Remote Sensing and Information Engineering,  <br />
-Wuhan University,  <br />
-430079, Wuhan, China.  <br />
+Wuhan University, Wuhan, China.  <br />
 Email: zhangkao@whu.edu.cn  <br />
+
+Zhenzhong CHEN (Professor and Director) <br />
+Laboratory of Intelligent Information Processing (LabIIP)  <br />
+Wuhan University, Wuhan, China.  <br />
+Email: zzchen@whu.edu.cn  <br />
+Web: http://iip.whu.edu.cn/~zzchen/  <br />

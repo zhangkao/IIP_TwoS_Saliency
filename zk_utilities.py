@@ -114,8 +114,6 @@ def postprocess_predictions(pred, shape_r, shape_c):
     return img / np.max(img) * 255
 
 
-
-
 def padding(img, shape_r=480, shape_c=640, channels=3):
     img_padded = np.zeros((shape_r, shape_c, channels), dtype=np.uint8)
     if channels == 1:
@@ -205,60 +203,9 @@ def np2mat(img, dtype=np.uint8):
     else:
         return img.astype(dtype)
 
-
 #####################################################################
 #Generate gaussmaps
 #####################################################################
-def get_gaussmaps(height,width,nb_gaussian):
-    e = height / width
-    e1 = (1 - e) / 2
-    e2 = e1 + e
-
-    mu_x = np.repeat(0.5,16,0)
-    mu_y = np.repeat(0.5,16,0)
-
-    # sigma_x = np.array([4 / width, 4 / width, 4 / width, 4 / width,
-    #            8 / width, 8 / width, 8 / width, 8 / width,
-    #            16 / width, 16 / width, 16 / width, 16 / width,
-    #            32 / width, 32 / width, 32 / width, 32 / width])
-    sigma_y = np.array([4 / height, 8 / height, 16 / height, 32 / height,
-               4 / height, 8 / height, 16 / height, 32 / height,
-               4 / height, 8 / height, 16 / height, 32 / height,
-               4 / height, 8 / height, 16 / height, 32 / height])
-    sigma_x = sigma_y.transpose()
-
-    x_t = np.dot(np.ones((height, 1)), np.reshape(np.linspace(0.0, 1.0, width), (1, width)))
-    y_t = np.dot(np.reshape(np.linspace(e1, e2, height), (height, 1)), np.ones((1, width)))
-
-    x_t = np.repeat(np.expand_dims(x_t, axis=-1), nb_gaussian, axis=2)
-    y_t = np.repeat(np.expand_dims(y_t, axis=-1), nb_gaussian, axis=2)
-
-    gaussian = 1 / (2 * np.pi * sigma_x * sigma_y + EPS) * \
-               np.exp(-((x_t - mu_x) ** 2 / (2 * sigma_x ** 2 + EPS) +
-                       (y_t - mu_y) ** 2 / (2 * sigma_y ** 2 + EPS)))
-
-    return gaussian
-
-def preprocess_priors(b_s, shape_r, shape_c, channels = 16):
-
-    ims = get_gaussmaps(shape_r, shape_c, channels)
-
-    ims = np.expand_dims(ims, axis=0)
-    ims = np.repeat(ims,b_s,axis=0)
-
-    return ims
-
-def preprocess_priors_3d(b_s, time_dims,shape_r, shape_c, channels = 16):
-
-    ims = get_gaussmaps(shape_r, shape_c, channels)
-
-    ims = np.expand_dims(ims, axis=0)
-    ims = np.repeat(ims, time_dims, axis=0)
-
-    ims = np.expand_dims(ims, axis=0)
-    ims = np.repeat(ims, b_s, axis=0)
-    return ims
-
 def st_get_gaussmaps(height,width,nb_gaussian):
     e = height / width
     e1 = (1 - e) / 2
@@ -295,15 +242,6 @@ def dy_get_gaussmaps(height,width,nb_gaussian):
                         1/2,1/2,1/2,1/2])
     sigma_y = e*np.array([1 / 16, 1 / 8, 3 / 16, 1 / 4,
                           1 / 8, 1 / 4, 3 / 8, 1 / 2])
-    # sigma_x = np.ones(nb_gaussian) / 2
-    # sigma_y = e * np.array(np.arange(1, 9)) / 16
-
-    # sigma_x = np.array([4 / height, 8 / height, 16 / height, 32 / height,
-    #            4 / height, 8 / height, 16 / height, 32 / height,
-    #            4 / height, 8 / height, 16 / height, 32 / height,
-    #            4 / height, 8 / height, 16 / height, 32 / height])
-    # sigma_x = e*np.array(np.arange(1,9))/16
-    # sigma_y = sigma_x
 
     x_t = np.dot(np.ones((height, 1)), np.reshape(np.linspace(0.0, 1.0, width), (1, width)))
     y_t = np.dot(np.reshape(np.linspace(e1, e2, height), (height, 1)), np.ones((1, width)))

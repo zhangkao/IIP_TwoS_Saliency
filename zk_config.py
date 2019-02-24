@@ -3,7 +3,7 @@ import math,random,os
 #########################################################################
 # MODEL PARAMETERS														#
 #########################################################################
-# replace the wkdir to your path
+# replace the datadir to your path
 dataDir = 'E:/Code/IIP_Saliency_Video/DataSet'
 #########################################################################
 # Parameters SETTINGS
@@ -52,7 +52,7 @@ nb_imgs_val = 5000
 #########################################################################
 # Videos TRAINING SETTINGS
 #########################################################################
-videos_data_path = dataDir + '/salVideo2'
+videos_data_path = dataDir + '/salVideo'
 # path of training images
 videos_train_path = videos_data_path + '/train/videos/'
 # path of training maps
@@ -62,7 +62,7 @@ videofixs_train_path = videos_data_path + '/train/fixations/maps/'
 # path of training flows
 videoflows_train_path = videos_data_path + '/train/flows/'
 # number of training images
-nb_videos_train = 30
+# nb_videos_train = 44
 
 # path of validation images
 videos_val_path = videos_data_path + '/val/videos/'
@@ -73,7 +73,7 @@ videofixs_val_path = videos_data_path + '/val/fixations/maps/'
 # path of validation flows
 videoflows_val_path = videos_data_path + '/val/flows/'
 # number of validation images
-nb_videos_val = 20
+# nb_videos_val = 20
 
 video_train_list = videos_data_path + '/train.txt'
 video_val_list   = videos_data_path + '/val.txt'

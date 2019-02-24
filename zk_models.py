@@ -40,24 +40,23 @@ def salcnn_SF_Net(img_rows=480, img_cols=640, img_channels=3):
 #######################################################
 # 2.0 TwoS-Net
 #######################################################
-def salcnn_Static_Net(img_rows=480, img_cols=640, img_channels=3):
-
-	video_inputs = Input(shape=(img_rows, img_cols, img_channels))
-	x_st_input = Conv2D(3, (1, 1), padding='same', kernel_initializer=Constant(value=(1, 0, 0, 0, 1, 0, 0, 0, 1)), bias_initializer=Constant(value=(-103.939,-116.779,-123.68)), name='sal_st_sub_mean')(video_inputs)
+def salcnn_Static_Net(img_rows=480, img_cols=640, img_channels=3, pre_sf_path = ''):
 
 	sfnet = salcnn_SF_Net(img_rows=img_rows, img_cols=img_cols, img_channels=img_channels)
-	sfnet.inputs = x_st_input
-	x_sf_st = sfnet.output
+	if os.path.exists(pre_sf_path):
+		print("Load pre-train SF-Net weights")
+		sfnet.load_weights(pre_sf_path, by_name=True)
 
+	x_sf_st = sfnet.output
 	# x = Dropout(0.5)(x)
 	x = Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_1')(x_sf_st)
 	x = Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_2')(x)
 
 	cb_input = Input(shape=(shape_r_out, shape_c_out, nb_gaussian))
 	cb_x = Conv2D(64, (3, 3), activation='relu', padding='same', name='sal_st_cb_conv2d_1')(cb_input)
-	priors = Conv2D(128, (3, 3), activation='relu', padding='same', name='sal_st_cb_conv2d_2')(cb_x)
+	priors = Conv2D(64, (3, 3), activation='relu', padding='same', name='sal_st_cb_conv2d_2')(cb_x)
 	x = layers.concatenate([x, priors], axis=-1, name='sal_st_cb_cat')
-	x_input = [video_inputs, cb_input]
+	x_input = [sfnet.input, cb_input]
 
 	x = Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_3_cb')(x)
 	x = Conv2D(1, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_4')(x)
@@ -67,7 +66,7 @@ def salcnn_Static_Net(img_rows=480, img_cols=640, img_channels=3):
 	model.summary()
 	return model
 
-def salcnn_Dynamic_Net(time_dims=7, img_rows=480, img_cols=640, img_channels=3, feature_type='CNN', cnn_type='VGG16', cb_type='LGP', pre_sf_path = ''):
+def salcnn_Dynamic_Net(time_dims=7, img_rows=480, img_cols=640, img_channels=3, pre_sf_path = ''):
 
 	video_inputs = Input(shape=(time_dims, img_rows, img_cols, img_channels))
 	# BGR to gray image, three channels
@@ -75,7 +74,7 @@ def salcnn_Dynamic_Net(time_dims=7, img_rows=480, img_cols=640, img_channels=3, 
 	x_dy_input = TimeDistributed(Conv2D(3, (1, 1), padding='same', kernel_initializer=Constant(value=(0.114,0.114,0.114, 0.587,0.587,0.587, 0.299, 0.299, 0.299)), use_bias = False), name='sal_dy_bgr2gray')(video_inputs)
 	x_dy_input = TimeDistributed(Conv2D(3, (1, 1), padding='same', kernel_initializer=Constant(value=(1, 0, 0, 0, 1, 0, 0, 0, 1)), bias_initializer=Constant(value=(-103.939,-116.779,-123.68))), name='sal_dy_sub_mean')(x_dy_input)
 
-	sfnet = salcnn_SF_Net(img_rows=img_rows, img_cols=img_cols, img_channels=img_channels, feature_type = feature_type, cnn_type=cnn_type)
+	sfnet = salcnn_SF_Net(img_rows=img_rows, img_cols=img_cols, img_channels=img_channels)
 	if os.path.exists(pre_sf_path):
 		print("Load pre-train SF-Net weights")
 		sfnet.load_weights(pre_sf_path, by_name=True)
@@ -85,8 +84,8 @@ def salcnn_Dynamic_Net(time_dims=7, img_rows=480, img_cols=640, img_channels=3, 
 	x = Conv3D(256, (3, 3, 3), activation='relu', padding='same', name='sal_dy_conv3d_2')(x)
 
 	cb_input_3D = Input(shape=(time_dims, shape_r_out, shape_c_out, nb_gaussian))
-	cb_x = TimeDistributed(Conv2D(64, (3, 3), activation='relu', padding='same', name='sal_dy_cb_conv2d_1'), name='sal_dy_cb_conv2d_1')(cb_input_3D)
-	priors = TimeDistributed(Conv2D(128, (3, 3), activation='relu', padding='same', name='sal_dy_cb_conv2d_2'), name='sal_dy_cb_conv2d_2')(cb_x)
+	cb_x = TimeDistributed(Conv2D(64, (3, 3), activation='relu', padding='same', name='sal_dy_cb_conv2d_1'), name='sal_dy_cb_conv2d_11')(cb_input_3D)
+	priors = TimeDistributed(Conv2D(128, (3, 3), activation='relu', padding='same', name='sal_dy_cb_conv2d_2'), name='sal_dy_cb_conv2d_22')(cb_x)
 	x = layers.concatenate([x, priors], axis=-1, name='sal_dy_cb_cat')
 	x_input = [video_inputs, cb_input_3D]
 
@@ -128,8 +127,8 @@ def salcnn_TwoS_Net(time_dims=7, img_rows=480, img_cols=640, img_channels=3, pre
 	x_sf_dy = TimeDistributed(sfnet, name='sf_net_dy')(x_dy_input)
 
 	# St-net model
-	x_st = TimeDistributed(Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_1'),name='sal_st_conv2d_1')(x_sf_st)
-	x_st = TimeDistributed(Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_2'),name='sal_st_conv2d_2')(x_st)
+	x_st = TimeDistributed(Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_1'),name='sal_st_conv2d_11')(x_sf_st)
+	x_st = TimeDistributed(Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_2'),name='sal_st_conv2d_22')(x_st)
 
 	# Dy_net model
 	x_dy = Conv3D(256, (3, 3, 3), activation='relu', padding='same', name='sal_dy_conv3d_1')(x_sf_dy)
@@ -150,9 +149,9 @@ def salcnn_TwoS_Net(time_dims=7, img_rows=480, img_cols=640, img_channels=3, pre
 	x_input = [video_inputs, cb_inputs_st, cb_inputs_dy]
 
 	x_st = TimeDistributed(Conv2D(256, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_3_cb'), name='sal_st_conv2d_33_cb')(x_st)
-	x_st_out = TimeDistributed(Conv2D(1, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_4'), name='sal_st_conv2d_4')(x_st)
+	x_st_out = TimeDistributed(Conv2D(1, (3, 3), activation='relu', padding='same', name='sal_st_conv2d_4'), name='sal_st_conv2d_44')(x_st)
 
-	x_dy = Conv3D(256, (3, 3, 3), activation='relu', padding='same', name='sal_dy_conv3d_33_cb')(x_dy)
+	x_dy = Conv3D(256, (3, 3, 3), activation='relu', padding='same', name='sal_dy_conv3d_3_cb')(x_dy)
 	x_dy_out = Conv3D(1, (3, 3, 3), activation='relu', padding='same', name='sal_dy_conv3d_4')(x_dy)
 
 	# Fu_net model
