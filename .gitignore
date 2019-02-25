@@ -1,3 +1,8 @@
+Demo/*.py
+Demo/*.*
+
+Models/temp_models
 */Models/*.h5
 *.h5
-Demo/*.py
+
+Tools/EvalScores/*.m

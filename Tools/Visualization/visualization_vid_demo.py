@@ -209,14 +209,10 @@ def visual_vid(RootDir, DataSet, MethodNames, with_color=0, with_fix=0):
 
 if __name__ == "__main__":
 
-	DataSet = 'DIEM20'
-	RootDir = '/home/zk/zk/TwoS-release/DataSet/' + DataSet + '/'
+	DataSet = 'DIEM'
+	RootDir = 'E:/Code/IIP_Saliency_Video/DataSet/' + DataSet + '/'
 	MethodNames = ['zk-TwoS']
 
-	WITH_FIX = 0
+	WITH_FIX = 1
 	WITH_COLOT = 1
 	visual_vid(RootDir, DataSet, MethodNames, with_color=WITH_COLOT, with_fix=WITH_FIX)
-
-
-	# visual_color_vid(RootDir, DataSet, MethodNames, WITH_FIX)
-	# visual_gray_vid(RootDir, DataSet, MethodNames, WITH_FIX)

@@ -216,10 +216,10 @@ def getAllScores_mean(RootDir, MaxVidNums=float('inf')):
 
 if __name__ == "__main__":
 
-	DataSet = 'citius'
-	RootDir = '/home/zk/zk/TwoS-release/DataSet/' + DataSet + '/'
+	DataSet = 'DIEM'
+	RootDir = 'E:/Code/IIP_Saliency_Video/DataSet/' + DataSet + '/'
 	keys_order = ['AUC_shuffled', 'NSS', 'AUC_Judd', 'AUC_Borji', 'KLD', 'SIM', 'CC']
-	MethodNames = ['ACL']
+	MethodNames = ['zk-TwoS']
 
 	IS_EVAL_SCORES=1
 	if IS_EVAL_SCORES:

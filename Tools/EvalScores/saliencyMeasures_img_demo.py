@@ -155,14 +155,49 @@ def getShufmap_img(fixsDir, DataSet='SALICON', size=None):
 	return ShufMap
 
 
+def getAllScores_mean(RootDir, MaxImgNums=float('inf')):
+
+	scoreDir = RootDir + 'Results/Scores_py/'
+
+	score_names = [f for f in os.listdir(scoreDir) if f.endswith('.mat')]
+	score_names.sort()
+	method_num = len(score_names)
+
+	meanS = {}
+	for idx_m in range(method_num):
+		method_name = score_names[idx_m]
+		iscores = h5io.loadmat(scoreDir + method_name)["scores"]
+		img_num = min(len(iscores), MaxImgNums)
+		iscores_mean = np.mean(iscores[:img_num], 0)
+
+		tmp_name = method_name[6:-4].replace('-','_')
+		meanS[tmp_name] = {'meanS': iscores_mean,  'scores': iscores}
+
+	h5io.savemat(RootDir + 'Results/meanS_py.mat', {'meanS': meanS})
+
+
 
 if __name__ == "__main__":
 
 	DataSet = 'salicon'
-	RootDir = '/home/zk/zk/TwoS-release/DataSet/salicon/val/'
+	RootDir = 'E:/Code/IIP_Saliency_Video/DataSet/salicon/val/'
 	keys_order = ['AUC_shuffled', 'NSS', 'AUC_Judd', 'AUC_Borji', 'KLD', 'SIM', 'CC']
-	MethodNames = ['resnet34-1', 'resnet34-fix-1','vgg16-1']
+	MethodNames = ['zk-twos-st']
 
 	IS_EVAL_SCORES=1
 	if IS_EVAL_SCORES:
 		evalscores_img(RootDir, DataSet, MethodNames, keys_order)
+
+	IS_ALL_SCORES = 1
+	if IS_ALL_SCORES:
+
+		# for python implementation
+		MaxVideoNums = float('inf')
+		getAllScores_mean(RootDir , MaxVideoNums)
+
+		# for matlab implementation
+		# import matlab
+		# import matlab.engine
+		# eng = matlab.engine.start_matlab()
+		# eng.Img_MeanScore(RootDir, nargout = 0)
+		# eng.Image_Meanscore(nargout = 0)
