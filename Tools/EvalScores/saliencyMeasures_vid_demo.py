@@ -153,7 +153,7 @@ def evalscores_vid(RootDir, DataSet, MethodNames, keys_order):
 			file_name = sal_names[idx_n][:-4]
 			iscore_path = iscoreDir + 'Score_' + file_name + '.mat'
 			if os.path.exists(iscore_path):
-				iscores = h5io.loadmat(iscore_path)["iscores"]
+				iscores = h5io.loadmat(iscore_path)["iscore"]
 				scores[file_name] = iscores
 				continue
 
@@ -184,7 +184,7 @@ def evalscores_vid(RootDir, DataSet, MethodNames, keys_order):
 				# print(str(idx_f + 1) + "/" + str(nframes) + ": finished!")
 
 			scores[file_name] = iscores
-			h5io.savemat(iscore_path, {'iscores': iscores})
+			h5io.savemat(iscore_path, {'iscore': iscores})
 
 		h5io.savemat(score_path, {'scores': scores})
 
@@ -203,7 +203,7 @@ def getAllScores_mean(RootDir, MaxVidNums=float('inf')):
 		iscores = h5io.loadmat(scoreDir + method_name)["scores"]
 		vid_num = min(len(iscores), MaxVidNums)
 
-		iscores_mean_vid = [np.mean(v, 0) for i, v in zip(range(len(iscores)), iscores.values()) if i < vid_num]
+		iscores_mean_vid = [np.mean(v[~np.isnan(np.sum(v,1)),:], 0) for i, v in zip(range(len(iscores)), iscores.values()) if i < vid_num]
 		iscores_mean_vid = np.array(iscores_mean_vid)
 		iscores_mean = np.mean(iscores_mean_vid, 0)
 
@@ -216,10 +216,10 @@ def getAllScores_mean(RootDir, MaxVidNums=float('inf')):
 
 if __name__ == "__main__":
 
-	DataSet = 'DIEM'
+	DataSet = 'DIEM20'
 	RootDir = 'E:/Code/IIP_Saliency_Video/DataSet/' + DataSet + '/'
 	keys_order = ['AUC_shuffled', 'NSS', 'AUC_Judd', 'AUC_Borji', 'KLD', 'SIM', 'CC']
-	MethodNames = ['zk-TwoS']
+	MethodNames = ['zk-TwoS-old','zk-TwoS','ACL','Fang-Tip14','OMCNN']
 
 	IS_EVAL_SCORES=1
 	if IS_EVAL_SCORES:
@@ -231,4 +231,12 @@ if __name__ == "__main__":
 		if DataSet.upper() == 'CITIUS':
 			MaxVideoNums = 45
 
+		# for python implementation
 		getAllScores_mean(RootDir , MaxVideoNums)
+
+
+		# for matlab implementation
+		# import matlab
+		# import matlab.engine
+		# eng = matlab.engine.start_matlab()
+		# eng.Vid_MeanScore(RootDir, nargout = 0)
