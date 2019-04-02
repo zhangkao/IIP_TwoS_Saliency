@@ -85,7 +85,7 @@ def salcnn_Dynamic_Net(time_dims=7, img_rows=480, img_cols=640, img_channels=3, 
 
 	cb_input_3D = Input(shape=(time_dims, shape_r_out, shape_c_out, nb_gaussian))
 	cb_x = TimeDistributed(Conv2D(64, (3, 3), activation='relu', padding='same', name='sal_dy_cb_conv2d_1'), name='sal_dy_cb_conv2d_11')(cb_input_3D)
-	priors = TimeDistributed(Conv2D(128, (3, 3), activation='relu', padding='same', name='sal_dy_cb_conv2d_2'), name='sal_dy_cb_conv2d_22')(cb_x)
+	priors = TimeDistributed(Conv2D(64, (3, 3), activation='relu', padding='same', name='sal_dy_cb_conv2d_2'), name='sal_dy_cb_conv2d_22')(cb_x)
 	x = layers.concatenate([x, priors], axis=-1, name='sal_dy_cb_cat')
 	x_input = [video_inputs, cb_input_3D]
 
