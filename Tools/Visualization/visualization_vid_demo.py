@@ -210,7 +210,7 @@ def visual_vid(RootDir, DataSet, MethodNames, with_color=0, with_fix=0):
 if __name__ == "__main__":
 
 	DataSet = 'DIEM20'
-	RootDir = 'E:/Code/IIP_Saliency_Video/DataSet/' + DataSet + '/'
+	RootDir = 'D:/DataSet/' + DataSet + '/'
 	MethodNames = ['zk-TwoS']
 
 	WITH_FIX = 1
