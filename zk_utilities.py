@@ -85,7 +85,10 @@ def preprocess_videos(path, shape_r, shape_c, frames=float('inf'), submean=False
         # frame[:, :, 0] = gray_im
         # frame[:, :, 1] = gray_im
         # frame[:, :, 2] = gray_im
-        ims[idx_frame] = padding(frame, shape_r, shape_c, 3)
+        if ret:
+            ims[idx_frame] = padding(frame, shape_r, shape_c, 3)
+        else:
+            print('Frame load error: ' % (idx_frame+1))
 
     if submean:
         ims = ims.astype(np.float32)
