@@ -2,8 +2,7 @@
 
 It is a re-implementation code for the following paper: 
 
-Kao Zhang, Zhenzhong Chen. Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network.
-IEEE Trans. Circuits Syst. Video Techn. 2018. [Online] Avaliable: https://ieeexplore.ieee.org/document/8543830 <br />
+Kao Zhang, Zhenzhong Chen. Video Saliency Prediction Based on Spatial-Temporal Two-Stream Network. IEEE Transactions on Circuits and Systems for Video Technology (TCSVT), vol. 29, no. 12, pp. 3544-3557, 2019. [Online] Avaliable: https://ieeexplore.ieee.org/document/8543830 <br />
 
 
 ## Installation 
@@ -17,14 +16,16 @@ The code was developed using Python 3.6 & Keras 2.2.4 & CUDA 9.0. There may be a
 ### Pre-trained models
 Download the pre-trained models and put the pre-trained model into the "Models" file.
 
-* [TwoS-model]
- [[Baidu Drive](https://pan.baidu.com/s/1MkKxmOPc6itCDpOfyaIKyA)]
- [[Google Drive](https://drive.google.com/open?id=1vXTjW8MjW4308j1HM1Y_MBpUxmcX3I2k)]
+* **TwoS-model**
+[Baidu Drive](https://pan.baidu.com/s/1MkKxmOPc6itCDpOfyaIKyA);
+[Google Drive](https://drive.google.com/open?id=1vXTjW8MjW4308j1HM1Y_MBpUxmcX3I2k);
+[OneDrive](https://whueducn-my.sharepoint.com/:u:/g/personal/zhangkao_whu_edu_cn/EbAGLkQNDsBGnz9IOT8P_xMBXctvYAHVKwbxrJBpGSz5dQ?e=eFYbsR) (210M)
 
-* [SF-Net-model]
-[[Baidu Drive](https://pan.baidu.com/s/1yT7LUfDzC1aT_L3-4-ivdw)]
-[[Google Drive](https://drive.google.com/open?id=1nmzdxsSbePF9aOkl9GDUMO7Ndz5NTVT7)]
-    
+* **SF-Net-model**
+[Baidu Drive](https://pan.baidu.com/s/1yT7LUfDzC1aT_L3-4-ivdw);
+[Google Drive](https://drive.google.com/open?id=1nmzdxsSbePF9aOkl9GDUMO7Ndz5NTVT7);
+[OneDrive](https://whueducn-my.sharepoint.com/:u:/g/personal/zhangkao_whu_edu_cn/EVWGnQLKfH9Mmlpdrwh6AeMB831fYZNC0u7g4MuXrwDPfA?e=OdvGO8) (58M)
+
     
 ### Python requirements 
 Currently, the code supports python 3.6
